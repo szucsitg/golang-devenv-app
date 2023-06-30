@@ -33,5 +33,17 @@
           devenv-app = flake-utils.lib.mkApp { drv = self.packages.${system}.devenv-app; };
           default = devenv-app;
         };
+        devShell = pkgs.mkShell {
+          buildInputs = with pkgs;
+            [
+              # Golang Dev Tools
+              delve
+              golangci-lint
+              gopkgs
+              gopls
+              gotests
+              impl
+            ];
+        };
       });
 }
